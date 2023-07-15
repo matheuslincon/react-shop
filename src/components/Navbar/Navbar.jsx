@@ -1,16 +1,14 @@
-import logoWhite from "../../assets/logoWhite.png";
+import SearchBar from "../SearchBar/SearchBar";
+import logoBlack from "../../assets/logoBlack.png";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   return (
-    <>
-      <nav className="flex m-4 justify-between items-center">
-        <img className="w-12 ml-4 hover:scale-125 cursor-pointer" src={logoWhite} alt="logo" />
-        <ul className="flex cursor-pointer">
-          <li className="p-4 hover:text-sky-900">Home</li>
-          <li className="p-4 hover:text-sky-900">Products</li>
-        </ul>
-      </nav>
-    </>
+    <nav className="flex justify-between items-center bg-[#2a2a2a]">
+      <img className="w-12 ml-8 hover:scale-125 cursor-pointer" src={logoBlack} alt="logo" />
+      <SearchBar/>
+      <AiOutlineShoppingCart className="mr-8 text-white cursor-pointer" size={30}/>
+    </nav>
   )
 }
 
