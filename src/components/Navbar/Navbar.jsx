@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
-import logoBlack from "../../assets/logoBlack.png";
+import logoBlack from "../../assets/logoBlack1.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
