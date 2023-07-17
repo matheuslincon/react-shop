@@ -15,8 +15,8 @@ const ProductList = ({ games }) => {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <div className="flex justify-around mb-8">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
+        <div className="flex justify-around mb-12">
           <button onClick={e => handleFilter(e.target.value)} value={"Playstation 5"} className="bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] text-white w-36 h-36 rounded-full flex justify-center items-center flex-col opacity-60 hover:opacity-100">
             <BsPlaystation size={60}/>
             Playstation 5
