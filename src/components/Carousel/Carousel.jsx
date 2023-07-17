@@ -36,7 +36,8 @@ const Carousel = () => {
       <div className="absolute bottom-4 right-0 left-0">
         <div className="hidden group-hover:flex items-center justify-center gap-4">
           {slides.map((_, i) => (
-            <div key={i} onClick={() => setCurrentIndex(i)} className={`transition-all w-3 h-3 bg-white rounded-full cursor-pointer ${currentIndex === i ? "p-2" : "bg-opacity-50"}`}/>
+            <div key={i} onClick={() => setCurrentIndex(i)} className={`transition-all w-3 h-3 bg-white rounded-full cursor-pointer ${currentIndex === i ? "p-2" : "bg-opacity-50"}`}>
+            </div>
           ))}
         </div>
       </div>

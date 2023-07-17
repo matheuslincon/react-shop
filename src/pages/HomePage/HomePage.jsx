@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar"
 import ProductList from "../../containers/ProductList/ProductList"
 import { getAllGames } from "../../services/games-service"
 
-const Home = () => {
+const HomePage = () => {
   const [games, setGames] = useState([]);
   
   useEffect(() => {
@@ -22,4 +22,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
