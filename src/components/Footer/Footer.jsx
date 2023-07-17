@@ -2,7 +2,7 @@ import { BsFacebook, BsGithub, BsInstagram, BsTwitter, BsYoutube } from "react-i
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2a2a2a]">
+    <footer className="bg-[#2a2a2a] absolute bottom-0 w-full">
       <div className="max-w-screen-xl px-4 py-12 mx-auto flex items-center justify-between sm:px-6 lg:px-8">
         <p className="ml-8 text-center text-white opacity-50">
             © 2023 this is a personal project.
