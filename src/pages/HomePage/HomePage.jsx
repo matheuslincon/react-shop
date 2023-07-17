@@ -3,6 +3,7 @@ import Carousel from "../../components/Carousel/Carousel"
 import Navbar from "../../components/Navbar/Navbar"
 import ProductList from "../../containers/ProductList/ProductList"
 import { getAllGames } from "../../services/games-service"
+import Footer from "../../components/Footer/Footer"
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -18,6 +19,7 @@ const HomePage = () => {
       <Navbar/>
       <Carousel/>
       <ProductList games={games}/>
+      <Footer/>
     </>
   )
 }
