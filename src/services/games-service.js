@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 
 export const getAllGames = async () => {
   const collectionRef = collection(db, "games");
@@ -17,3 +17,8 @@ export const getGameById = async (id) => {
 
   return {id: snapshot.id, ...snapshot.data()};
 }
+
+export const setFavorite = async (id, bool) => {
+  const docRef = doc(db, "games", id);
+	await setDoc(docRef, { favorite: bool }, { merge: true });
+};

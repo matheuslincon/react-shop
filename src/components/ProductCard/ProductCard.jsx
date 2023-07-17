@@ -1,19 +1,26 @@
-import { useState } from "react"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { setFavorite } from "../../services/games-service";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ProductCard = ({game}) => {
   const [isFavorite, setIsFavorite] = useState(game.favorite);
 
-  const handleFavorite = () => setIsFavorite(!isFavorite);
+  const handleFavorite = async () => {
+      await setFavorite(game.id, !game.favorite)
+      setIsFavorite(!game.favorite)
+  };
 
   return (
     <article className="group border border-solid rounded bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] cursor-pointer p-2">
       <div className="w-full overflow-hidden rounded-t-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+      <Link to={`product/${game.id}`}>
         <img
           src={game.imagesUrl[0]}
           alt={game.title}
           className="h-full w-full object-cover object-center group-hover:opacity-75"
         />
+      </Link>  
       </div>
       <div className="bg-white rounded-b-lg flex justify-between">
         <div>
