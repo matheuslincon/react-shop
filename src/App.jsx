@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
     <GameProvider>
-        <CartProvider>
+      <CartProvider>
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<Home/>}/>
@@ -20,7 +20,7 @@ const App = () => {
               <Route path='/cancel' element={<CancelPage/>}/>
             </Routes>
           </BrowserRouter>
-        </CartProvider>
+      </CartProvider>
       </GameProvider>
     </>
   )
