@@ -9,11 +9,12 @@ const SearchBar = () => {
 
   return (
     <>
-      <form className="flex items-center gap-2 m-4">
-        <input className="rounded bg-slate-200 p-2 w-72 focus:outline-none" placeholder="Search" type="text" value={value} onChange={(e) => setValue(e.target.value)} />
-        <button><AiOutlineSearch className="text-white ml-2" size={25}/></button>
-      </form>
-      <div className=" absolute flex flex-col z-[100] bg-slate-200">
+      <form className="flex flex-col gap-x-2 m-4">
+        <div className="flex items-center">
+          <input className=" bg-slate-200 p-2 w-72 focus:outline-none" placeholder="Search" type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+          <button><AiOutlineSearch className="text-white ml-2" size={25}/></button>
+        </div>
+        <div className="bg-slate-200 w-72">
         {games.filter((game) => {
             const search = value.toLowerCase();
             const title = game.title.toLowerCase();
@@ -21,10 +22,16 @@ const SearchBar = () => {
         }).slice(0,5)
           .map((game) => (
             <Link to={`product/${game.id}`} key={game.id}>
-              <div>{game.title}</div>
+              <div className="flex mt-2 ml-2 mb-1 hover:text-blue-500">
+                <div className="w-8">
+                  <img src={game.imagesUrl[0]}/>
+                </div>
+                <div>{game.title}</div>
+              </div>
             </Link>
         ))}
       </div>
+      </form>
     </>
   )
 }
