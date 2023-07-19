@@ -1,15 +1,24 @@
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai"
 import { setFavorite } from "../../services/games-service";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import { addOneToCart, getAllCart } from "../../services/cart-service";
 
 const ProductCard = ({game}) => {
+  const { setCart } = useContext(CartContext);
+
   const [isFavorite, setIsFavorite] = useState(game.favorite);
 
   const handleFavorite = async () => {
       await setFavorite(game.id, !game.favorite)
       setIsFavorite(!game.favorite)
   };
+
+  const handleAddToCart = async () => {
+    await addOneToCart(game);
+    setCart(await getAllCart());
+  }
 
   return (
     <article className="group border border-solid rounded bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] cursor-pointer p-2">
@@ -27,8 +36,13 @@ const ProductCard = ({game}) => {
           <h3 className="text-sm text-gray-700 p-2">{game.title}</h3>
           <p className="mt-1 text-lg font-medium text-gray-900 pl-2">${game.price}</p>
         </div>
-        <div onClick={handleFavorite} className="p-2 pr-4">
-          {isFavorite ? <AiFillHeart size={30} className="text-red-600"/> : <AiOutlineHeart size={30} className="text-red-600"/>}
+        <div>
+          <button onClick={handleFavorite} className="p-2">
+            {isFavorite ? <AiFillHeart size={30} className="text-red-600"/> : <AiOutlineHeart size={30} className="text-red-600"/>}
+          </button>
+          <button className="p-2" onClick={handleAddToCart}>
+            <AiOutlineShoppingCart className="" size={30}/>
+          </button>
         </div>
       </div>
     </article>

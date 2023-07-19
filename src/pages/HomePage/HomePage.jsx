@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react"
 import Carousel from "../../components/Carousel/Carousel"
 import Navbar from "../../components/Navbar/Navbar"
 import ProductList from "../../containers/ProductList/ProductList"
-import { getAllGames } from "../../services/games-service"
 import Footer from "../../components/Footer/Footer"
+import { useContext } from "react"
+import { GameContext } from "../../context/GameContext"
 
 const HomePage = () => {
-  const [games, setGames] = useState([]);
-  
-  useEffect(() => {
-    getAllGames()
-      .then((gamesData) => setGames(gamesData))
-      .catch((err) => console.log(err))
-  },[]);
+  const { games } = useContext(GameContext);
+
 
   return (
     <>

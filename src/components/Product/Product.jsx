@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { addOneToCart, getAllCart } from "../../services/cart-service";
 
 const Product = ({game}) => {
   const { description, developer, genre, imagesUrl, platform, price, quantity, releaseYear, title} = game;
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const { setCart } = useContext(CartContext);
+
+  const handleAddToCart = async () => {
+    await addOneToCart(game);
+    setCart(await getAllCart());
+  }
+
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2">
+    <main className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         <div className="p-8">
           <div className="mb-4 duration-500 ease-out">
             <img className="" src={imagesUrl[currentIndex]} alt="" />
@@ -25,7 +34,7 @@ const Product = ({game}) => {
           <p className="font-medium text-gray-500 text-justify pb-4">{description[1]}</p>
           <p className="text-lg font-medium text-gray-900 mb-3">{quantity} in stock</p>
           <div className="flex items-center justify-center">
-            <button className="w-full lg:w-[600px] text-xl py-4 rounded-lg bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] text-white opacity-60 hover:opacity-100">Add to Cart</button>
+            <button onClick={handleAddToCart} className="w-full lg:w-[600px] text-xl py-4 rounded-lg bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] text-white opacity-60 hover:opacity-100">Add to Cart</button>
           </div>
           <h6 className="mt-12 text-xl font-bold">Details</h6>
           <div className="mt-6 border-t border-gray-200">
