@@ -2,18 +2,27 @@ import { useContext, useEffect, useState } from "react"
 import ProductCard from "../../components/ProductCard/ProductCard"
 import { SiNintendoswitch, SiAmazongames, SiPlaystation, SiXbox } from "react-icons/si";
 import { GameContext } from "../../context/GameContext";
+import Pagination from "../../components/Pagination/Pagination";
 
 const ProductList = () => {
   const { games } = useContext(GameContext);
   const [filteredGames, setFilteredGames] = useState(games)
 
-  const handleClick = () => {
-    setFilteredGames(games)
-  }
+  const [currentPage, setCurrentPage] = useState(1);
+  const postPerPage = 8;
+
+  const lastPostIndex = currentPage * postPerPage
+  const firstPostIndex = lastPostIndex - postPerPage
+
+  const currentPosts = filteredGames.slice(firstPostIndex, lastPostIndex);
 
   useEffect(() => {
     setFilteredGames(games);
   }, [games])
+
+  const handleClick = () => {
+    setFilteredGames(games)
+  }
 
   const handleFilter = (platform) => {
     setFilteredGames(games.filter((game) => game.platform === platform))
@@ -41,10 +50,11 @@ const ProductList = () => {
           </button>
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {filteredGames.map((game) => (
+          {currentPosts.map((game) => (
             <ProductCard game={game} key={game.id}/>
           ))}
         </div>
+        <Pagination totalPosts={filteredGames.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
       </div>
     </section>
   )
