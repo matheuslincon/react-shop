@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductCard from "../../components/ProductCard/ProductCard"
 import { SiNintendoswitch, SiAmazongames, SiPlaystation, SiXbox } from "react-icons/si";
+import { GameContext } from "../../context/GameContext";
 
-const ProductList = ({ games }) => {
+const ProductList = () => {
+  const { games } = useContext(GameContext);
   const [filteredGames, setFilteredGames] = useState(games)
 
   const handleClick = () => {

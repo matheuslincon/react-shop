@@ -10,23 +10,62 @@ export const getAllCart = async () => {
 
 export const addOneToCart = async (game) => {
   const collectionRef = collection(db, "cart");
-  const { id, quantity, ...data } = game;
+  const { id, ...data } = game;
 
-  if(quantity > 0) {
+  const available = await reduceQuantity(id);
 
-    const docRef = doc(db, "cart", id)
+  if(available) {
+
+    const docRef = doc(collectionRef, id)
     let cartItem = (await getDoc(docRef)).data();
 
-    cartItem ? (cartItem.quantity += 1) : (cartItem = { ...data, quantity: 1 });
+    cartItem ? (cartItem.quantity += 1) : (cartItem = { ...data, quantity: 1});
 
-    await setDoc(doc(collectionRef), cartItem)
+    await setDoc(doc(collectionRef, id), cartItem)
 
   } else {
     console.log("Not available !")
   }
 }
 
-export const removeFromCart = async (id) => {
+export const removeFromCart = async (gameId, amount) => {
+  const collectionRef = collection(db, "cart");
+  const docRef = doc(collectionRef, gameId)
+  const item = (await getDoc(docRef)).data();
+
+  if(item.quantity > 0) {
+    item.quantity -= amount;
+    await setDoc(docRef, { quantity: item.quantity }, { merge: true });
+    await incrementQuantity(gameId, amount);
+  }
+
+  if(item.quantity === 0) {
+    await deleteFromCart(gameId)
+  }
+}
+
+export const reduceQuantity = async (gameId) => {
+  const collectionRef = collection(db, "games");
+  const docRef = doc(collectionRef, gameId)
+  const item = (await getDoc(docRef)).data();
+  if(item.quantity > 0) {
+    item.quantity -= 1
+    await setDoc(docRef, { quantity: item.quantity }, { merge: true });
+    return true;
+  } else {
+    return false
+  }
+}
+
+export const incrementQuantity = async (gameId, amount) => {
+  const collectionRef = collection(db, "games");
+  const docRef = doc(collectionRef, gameId)
+  const item = (await getDoc(docRef)).data();
+  item.quantity += amount;
+  await setDoc(docRef, { quantity: item.quantity }, { merge: true });
+}
+
+const deleteFromCart = async (id) => {
   const docRef = doc(db, "cart", id)
   await deleteDoc(docRef);
 }

@@ -20,7 +20,7 @@ const ProductPage = () => {
     <>
       <Navbar/>
       {error && <p>{error.message}</p>}
-      {game && <Product game={game}/>}
+      {game && <Product game={game} setGame={setGame}/>}
       <Footer/>
     </>
   )
