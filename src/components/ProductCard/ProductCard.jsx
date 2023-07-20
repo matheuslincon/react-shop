@@ -34,7 +34,7 @@ const ProductCard = ({game}) => {
       <div className="bg-white rounded-b-lg grid grid-cols-2">
         <div>
           <h3 className="text-sm text-gray-700 p-2">{game.title}</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900 pl-2">${game.price}</p>
+          <p className="mt-1 text-lg font-medium text-gray-900 pl-2">${game.priceApp}</p>
         </div>
         <div className="flex items-start justify-end">
           <button onClick={handleFavorite} className="p-2">

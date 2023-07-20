@@ -4,7 +4,7 @@ import { addOneToCart, getAllCart } from "../../services/cart-service";
 import { getGameById } from "../../services/games-service";
 
 const Product = ({game, setGame}) => {
-  const { description, developer, genre, imagesUrl, platform, price, quantity, releaseYear, title} = game;
+  const { description, developer, genre, imagesUrl, platform, priceApp, quantity, releaseYear, title} = game;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { setCart } = useContext(CartContext);
@@ -31,7 +31,7 @@ const Product = ({game, setGame}) => {
       </div>
       <div className="p-8">
         <h2 className="font-bold text-4xl my-4">{title}</h2>
-        <h4 className="font-bold text-2xl mb-4 text-gray-600">${price}</h4>
+        <h4 className="font-bold text-2xl mb-4 text-gray-600">${priceApp}</h4>
         <h3 className="font-bold text-2xl mb-4">{description[0]}</h3>
         <p className="font-medium text-gray-500 text-justify pb-4">{description[1]}</p>
         <p className="text-lg font-medium text-gray-900 mb-3">{quantity} in stock</p>

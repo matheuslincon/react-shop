@@ -16,8 +16,6 @@ export const CartProvider = ({children}) => {
     getCart();
   }, [])
 
-  console.log(cart)
-
   const contextValue = { cart, setCart }
 
   return (

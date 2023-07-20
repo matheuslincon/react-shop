@@ -42,11 +42,11 @@ const CartCard = ({item}) => {
           <div className="ml-5 flex ">
             <button onClick={handleReduceQuantity}>-</button>
             <p className="m-3 text-gray-400">Qty {item.quantity}</p>
-            {item.quanity > 0 && <button onClick={handleIncrementQuantity}>+</button>}
+            <button onClick={handleIncrementQuantity}>+</button>
           </div>
         </div>
         <div className="flex flex-col justify-between items-center">
-          <h3 className="font-bold text-xl">${item.price}</h3>
+          <h3 className="font-bold text-xl">${item.priceApp}</h3>
           <button onClick={handleDeleteFromCart} className="text-indigo-600 hover:text-indigo-400">Remove</button>
         </div>
       </section>

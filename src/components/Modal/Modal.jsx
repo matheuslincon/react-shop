@@ -4,13 +4,31 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 const Modal = ({ open, onClose }) => {
-  const { cart } = useContext(CartContext);
+  const { setCart, cart } = useContext(CartContext);
+  console.log(cart)
 
   const getTotal = cart.reduce((total, item) => {
-    total += (item.price * item.quantity)
+    total += (item.priceApp * item.quantity)
 
     return total
   },0)
+
+  const checkout = async () => {
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ items: cart })
+    }).then((response) => {
+      return response.json();
+    }).then((response) => {
+      if(response.url) {
+        window.location.assign(response.url);
+      }
+    })
+    setCart([])
+  }
   
   return (
     <div className={`fixed z-[100] inset-0 w-full h-full ${!open && "invisible"}`}>
@@ -30,7 +48,7 @@ const Modal = ({ open, onClose }) => {
             <h3 className="text-xl">${getTotal.toFixed(2)}</h3>
           </div>
           <div>
-            <button className="w-full rounded-lg mt-8 mb-8 px-8 py-4 bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] text-white text-xl opacity-60 hover:opacity-100">Checkout</button>
+            <button onClick={checkout} className="w-full rounded-lg mt-8 mb-8 px-8 py-4 bg-gradient-to-r from-[#2C7EF4] to-[#FF5757] text-white text-xl opacity-60 hover:opacity-100">Checkout</button>
           </div>
         </div>
       </div>
