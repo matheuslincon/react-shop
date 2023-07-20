@@ -27,7 +27,7 @@ app.post("/checkout", async (req, res) => {
     line_items: lineItems,
     mode: 'payment',
     success_url: "http://localhost:5173/success",
-    cancel_url: "http://localhost:5173/cancel"
+    cancel_url: "http://localhost:5173/"
   })
 
   res.send(JSON.stringify({

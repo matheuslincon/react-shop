@@ -65,7 +65,8 @@ export const incrementQuantity = async (gameId, amount) => {
   await setDoc(docRef, { quantity: item.quantity }, { merge: true });
 }
 
-const deleteFromCart = async (id) => {
+export const deleteFromCart = async (id) => {
   const docRef = doc(db, "cart", id)
+  console.log(docRef)
   await deleteDoc(docRef);
 }

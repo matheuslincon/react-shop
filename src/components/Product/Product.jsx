@@ -16,7 +16,7 @@ const Product = ({game, setGame}) => {
   }
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 max-h-screen">
+    <main className="grid grid-cols-1 md:grid-cols-2 max-h-full">
       <div className="p-8">
         <div className="mb-4">
           <img className="" src={imagesUrl[currentIndex]} alt="" />

@@ -6,6 +6,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
   const [cart, setCart] = useState([]);
+  const [checkout, setCheckout] = useState(false)
 
   const getCart = async () => {
     const data = await getAllCart();
@@ -16,7 +17,7 @@ export const CartProvider = ({children}) => {
     getCart();
   }, [])
 
-  const contextValue = { cart, setCart }
+  const contextValue = { cart, setCart, checkout, setCheckout }
 
   return (
     <CartContext.Provider value={contextValue}>
