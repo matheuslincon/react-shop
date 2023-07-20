@@ -22,8 +22,9 @@ const SearchBar = () => {
         <div className="bg-slate-200 w-72">
         {games.filter((game) => {
             const searchTerm = value.toLowerCase();
+            const fullTitle = game.fullTitle.toLowerCase();
             const title = game.title.toLowerCase();
-            return searchTerm && title.startsWith(searchTerm);
+            return (searchTerm && title.startsWith(searchTerm) || searchTerm && fullTitle.startsWith(searchTerm));
         }).slice(0,5)
           .map((game) => (
             <Link to={location.pathname && `/product/${game.id}`} key={game.id}>
@@ -31,7 +32,7 @@ const SearchBar = () => {
                 <div className="w-8">
                   <img src={game.imagesUrl[0]}/>
                 </div>
-                <div>{game.title}</div>
+                <div>{game.fullTitle}</div>
               </div>
             </Link>
         ))}

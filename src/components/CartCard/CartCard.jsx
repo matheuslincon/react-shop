@@ -36,7 +36,7 @@ const CartCard = ({item}) => {
         </div>
         <div className="flex flex-col justify-between">
           <div className="ml-5">
-            <h3 className="font-bold text-xl mb-1">{item.title}</h3>
+            <h3 className="font-bold text-xl mb-1">{item.fullTitle}</h3>
             <h6 className="text-gray-400">{item.platform}</h6>
           </div>
           <div className="ml-5 flex ">
