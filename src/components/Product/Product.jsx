@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { addOneToCart, getAllCart } from "../../services/cart-service";
 import { getGameById } from "../../services/games-service";
+import { SearchContext } from "../../context/SearchContent";
 
 const Product = ({game, setGame}) => {
-  const { description, developer, genre, imagesUrl, platform, priceApp, quantity, releaseYear, fullTitle} = game;
+  const { id, description, developer, genre, imagesUrl, platform, priceApp, quantity, releaseYear, fullTitle} = game;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { setValue } = useContext(SearchContext);
 
   const { setCart } = useContext(CartContext);
 
@@ -14,6 +16,10 @@ const Product = ({game, setGame}) => {
     setCart(await getAllCart());
     setGame(await getGameById(game.id));
   }
+
+  useEffect(() => {
+    setValue("");
+  }, [id]);
 
   return (
     <main className="grid grid-cols-1 md:grid-cols-2 max-h-full">

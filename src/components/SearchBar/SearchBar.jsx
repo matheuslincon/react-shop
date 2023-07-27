@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {AiOutlineSearch} from "react-icons/ai";
 import { GameContext } from "../../context/GameContext";
+import { SearchContext } from "../../context/SearchContent";
 import { Link, useLocation } from "react-router-dom";
 
 const SearchBar = () => {
-  const [value, setValue] = useState("");
+  const { value, setValue } = useContext(SearchContext);
   const { games } = useContext(GameContext);
   const location = useLocation();
 

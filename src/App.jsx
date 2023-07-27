@@ -5,23 +5,26 @@ import SuccessPage from "./pages/SuccessPage/SucessPage";
 import { CartProvider } from "./context/CartContext";
 import { GameProvider } from "./context/GameContext";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import SearchProvider from "./context/SearchContent";
 
 
 const App = () => {
   return (
     <>
-    <GameProvider>
-      <CartProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/product/:id' element={<Product/>}/>
-              <Route path='/success' element={<SuccessPage/>}/>
-              <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
-          </BrowserRouter>
-      </CartProvider>
-      </GameProvider>
+    <SearchProvider>
+      <GameProvider>
+        <CartProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/product/:id' element={<Product/>}/>
+                <Route path='/success' element={<SuccessPage/>}/>
+                <Route path="*" element={<NotFoundPage/>}/>
+              </Routes>
+            </BrowserRouter>
+        </CartProvider>
+        </GameProvider>
+    </SearchProvider>
     </>
   )
 }
